@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crystals Collector Game</title>
+
+  <!-- added css to resize image -->
+  <style type="text/css">
+    
+    .crystal-image {
+        width: 300px;
+        height: 300px;
+    }
+  </style>
+
+</head>
+    <body>
+        
+        <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+  
+        <div id="crystals">
+
+        
+        </div>
+        <!-- Javascript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+            <script type="text/javascript">
+
+            
+            var targetNumber = 50
+
+                // Here we set the "number-to-guess" header to match the "targetNumber".
+                // Eventually this will allow us to change the HTML to match the value in the JavaScript.
+                $("#number-to-guess").text(targetNumber);
+
+                var counter = 0;
+                
+                var numberOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+                for (var i = 0; i < numberOptions.length; i++) {
+
+                var imageCrystal = $("<img>");
+                
+                imageCrystal.addClass("crystal-image");
+
+                imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
+                
+                // Each imageCrystal will be given a data attribute called data-crystalValue.
+                // This data attribute will be set equal to the array value.
+                imageCrystal.attr("data-crystalvalue", numberOptions[i]);
+                
+                // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
+                $("#crystals").append(imageCrystal);
+                }
+
+                 $(".crystal-image").on("click", function() {
+
+                
+                var crystalValue = ($(this).attr("data-crystalvalue"));
+                crystalValue = parseInt(crystalValue);
+
+                // We then add the crystalValue to the user's "counter" which is a global variable.
+                // Every click, from every crystal adds to the global counter.
+                counter += crystalValue;
+
+
+
+                // user score
+                alert("New score: " + counter);
+
+                    // Here we created some logic to "check" if the click counter matches the targetNumber.
+                    // Remember, this click event will be triggered with each click.
+                    // With each click the counter will increase by 10 and be re-evaluated against target.
+                    if (counter === targetNumber) {
+                    // If the numbers match we'll celebrate the user's win.
+                    alert("You win!");
+                    }
+
+                    // Here we added an "else if" condition. If the user's counter ever exceeds the targetNumber...
+                    else if (counter >= targetNumber) {
+                    // Then they are alerted with a loss.
+                    alert("You lose!!");
+                    }
+                    // This is fine except the way our code is written every user will win first (when they hit 50).
+                    // But will then lose immediately if they click again. Seems pointless right?
+                    // To make this a game we need to create additional code to randomize the counter and targetScore.
+                                
+                });
+
+            </script>
+
+
+
+
+
+
+    </body>
+
+         game banner here
+    
+        // game instructions here inside a box w/text inside thats a different color
+    
+        // random number alongside scoreboard that updates tracking wins/losses
+    
+        // four crystal buttons w/scores tied to each button, each button will not display
+        // its amount until the player clicks the crystal, when they do it will update players score
+    
+        // player wins if their total score matches random number from beginning
+        // player loses if their score goes above the random number
+        // game restarts whenever player wins or loses
+    
+    
+        // When the game begins again, the player should see a new random number. 
+        // Also, all the crystals will have four new hidden values. Of course, the 
+        // user's score (and score counter) will reset to zero.
+</html>
