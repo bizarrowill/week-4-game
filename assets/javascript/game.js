@@ -52,6 +52,7 @@ var resetAndStart = function() {
         }
         
         $("#previous").html("Total Score: " + previous);
+        console.log(previous);
     }
     
     
@@ -75,7 +76,7 @@ $(document).on('click', ".crystal", function () {
         lost++;
         console.log("You Lost!");
 
-        $("#lost").html(lost);
+        $("#lost").html("Losses: " + lost);
         previous = 0;
         
         resetAndStart();
@@ -84,11 +85,12 @@ $(document).on('click', ".crystal", function () {
         win++;
         console.log("You Win!");
 
-        $("#win").html(win);
+        $("#win").html("Wins: " + win);
         
         previous = 0;
         resetAndStart();
     }
+    $("#previous").html("Total Score: " + previous);
     console.log(previous);
    
 
