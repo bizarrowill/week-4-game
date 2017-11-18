@@ -11,11 +11,15 @@ var previous = 0;
 var resetAndStart = function() {
         // jQuery grabs elements with the class "crystals" and empties the content of those elements
         $(".crystals").empty();
+
+        var images = [
+                    'https://i.pinimg.com/originals/d5/83/46/d58346d894f0acfcfeb550e6ad2eaf73.jpg', 
+                    'https://i.pinimg.com/originals/60/87/8c/60878cc7f7a1e3a6aa03165ca86c667d.jpg', 
+                    'https://i.pinimg.com/originals/0f/01/ef/0f01efbd73a51355737787968b6d8d44.jpg', 
+                    'https://upload.wikimedia.org/wikipedia/commons/3/3e/Quartz-Topaz-gem7-76d.jpg'];
         
         random_result = Math.floor(Math.random() * 102) + 19;
-        // Math.random() * 101 = 0...101.9999999999)
-        // Math.floor(Math.random() * 101) = 0...101
-        // Math.floor(Math.random() * 101) + 19 = 19...120
+
 
         $("#result").html('Random Result: ' + random_result);
         //console.log(random_result);
@@ -28,12 +32,29 @@ var resetAndStart = function() {
                 crystal.attr({
                     "class": 'crystal',
                     "data-random": random
+                    
+                });
+                crystal.css({
+                    "background-image":"url('" + images[i] + "')",
+                    "background-size":"cover"
+
+                });
+
+                crystal.css({
+                    "background-image":"url('" + images[i] + "')",
+                    "background-size":"cover"
+    
                 });
 
                 $(".crystals").append(crystal);
 
+        
         }
+        
+        $("#previous").html("Total Score: "" + previous);
     }
+    
+    
 resetAndStart();
 
 
@@ -46,12 +67,17 @@ $(document).on('click', ".crystal", function () {
 
     previous += num;
 
+    // this is not working $("#previous).html("Total Score: ",previous);
+
+    console.log(previous);
+
     if(previous > random_result){
         lost++;
         console.log("You Lost!");
 
         $("#lost").html(lost);
         previous = 0;
+        
         resetAndStart();
     }
     else if(previous === random_result){
@@ -59,6 +85,7 @@ $(document).on('click', ".crystal", function () {
         console.log("You Win!");
 
         $("#win").html(win);
+        
         previous = 0;
         resetAndStart();
     }
