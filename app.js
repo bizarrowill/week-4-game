@@ -51,7 +51,7 @@ var resetAndStart = function() {
         
         }
         
-        $("#previous").html("Total Score: "" + previous);
+        $("#previous").html("Total Score: "  + previous);
     }
     
     
